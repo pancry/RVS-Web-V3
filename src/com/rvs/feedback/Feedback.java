@@ -5,6 +5,7 @@ public class Feedback {
 	private String phone;
 	private String mail;
 	private String name;
+	private String company;
 	private String message;
 	
 	public int getId() {
@@ -36,6 +37,12 @@ public class Feedback {
 	}
 	public void setMessage(String message) {
 		this.message = message;
+	}
+	public String getCompany() {
+		return company;
+	}
+	public void setCompany(String company) {
+		this.company = company;
 	}
 	
 }
