@@ -14,4 +14,8 @@
         <property name="company" column="company"/>
         <property name="message" column="message"/>
     </class>
+	<class name="AreaOfInterest" table="areaofinterest">
+        <id name="id" column="id"/>
+        <property name="aoi" column="aoi"/>
+    </class>
 </hibernate-mapping>
