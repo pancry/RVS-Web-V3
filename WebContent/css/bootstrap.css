@@ -1137,9 +1137,9 @@ img {
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 4px;
-  -webkit-transition: all .1s ease-in-out;
-       -o-transition: all .1s ease-in-out;
-          transition: all .1s ease-in-out;
+  -webkit-transition: all .2s ease-in-out;
+       -o-transition: all .2s ease-in-out;
+          transition: all .2s ease-in-out;
 }
 .img-circle {
   border-radius: 50%;
@@ -2510,6 +2510,8 @@ label {
   display: inline-block;
   max-width: 100%;
   margin-bottom: 5px;
+  /*font-weight: bold;*/
+  /* --- above one commented and below two lines added by RVS --- */
   font-size: 14pt;
   font-family:'Calibri';
 }
@@ -4169,8 +4171,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar {
   position: relative;
-  min-height: 50px;
-  margin-bottom: 20px;
+  min-height: 70px; /* changed from 50 to 70*/
+  margin-bottom: 10px; /* changed from 20 to 10*/
   border: 1px solid transparent;
 }
 @media (min-width: 768px) {
@@ -4501,7 +4503,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   border-color: #e7e7e7;
 }
 .navbar-default .navbar-brand {
-  color: #ff0000;
+  color: #ff0000; /* changed from #777; */
 }
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
@@ -4513,6 +4515,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-default .navbar-nav > li > a {
   color: #777;
+  font-size:12pt; 
 }
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
@@ -4523,7 +4526,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
   color: #004080; /* #555 */
-  font-weight: bold;
+  font-weight: bold; /* added */
   /*background-color: #e7e7e7;*/
 }
 .navbar-default .navbar-nav > .disabled > a,
