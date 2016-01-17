@@ -9,3 +9,5 @@ insert into areaofInterestMap values (3, "MOBILE");
 insert into areaofInterestMap values (4, "BI");
 insert into areaofInterestMap values (5, "LBS");
 insert into areaofInterestMap values (6, "OTHRES");
+
+alter table feedback add (type varchar(20));
