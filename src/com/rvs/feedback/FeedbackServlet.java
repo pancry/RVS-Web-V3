@@ -21,6 +21,7 @@ public class FeedbackServlet extends HttpServlet {
 		String name = (String) req.getParameter("name");
 		String company = (String) req.getParameter("company");
 		String message = (String) req.getParameter("comment");
+		String type= (String) req.getParameter("type");
 		String[] aoi = (String[]) req.getParameterValues("aoi");
 
 		SessionFactory factory = DBUtil.getInstance().getFactory();
@@ -35,15 +36,15 @@ public class FeedbackServlet extends HttpServlet {
 		feedback.setName(name);
 		feedback.setCompany(company);
 		feedback.setPhone(phone);
+		feedback.setType(type);
+		
 		session.saveOrUpdate(feedback);
 		int id = feedback.getId();
 		t.commit();// transaction is committed
 		session.close();
 
-		
 		if(aoi != null)
 		{
-			
 			for(int i=0; i<aoi.length; i++)
 			{
 				Session session1 = factory.openSession();
@@ -60,8 +61,12 @@ public class FeedbackServlet extends HttpServlet {
 			
 		}
 
-
 		String nextJSP = "/contact.html";
+		if(type.equalsIgnoreCase("feedback"))
+		{
+			nextJSP = "/feedback.html";
+		}
+		
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
 		dispatcher.forward(req, resp);
 

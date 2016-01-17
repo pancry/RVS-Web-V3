@@ -13,7 +13,8 @@
         <property name="mail" column="mail"/>
         <property name="company" column="company"/>
         <property name="message" column="message"/>
-    </class>
+        <property name="type" column="type"/>
+        </class>
 	<class name="AreaOfInterest" table="areaofinterest">
         <id name="id" column="id"/>
         <property name="aoi" column="aoi"/>

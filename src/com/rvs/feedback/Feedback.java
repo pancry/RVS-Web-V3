@@ -7,6 +7,8 @@ public class Feedback {
 	private String name;
 	private String company;
 	private String message;
+	private String type;
+	
 	
 	public int getId() {
 		return id;
@@ -43,6 +45,12 @@ public class Feedback {
 	}
 	public void setCompany(String company) {
 		this.company = company;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
 	}
 	
 }
