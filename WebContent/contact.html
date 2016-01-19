@@ -11,15 +11,29 @@
 
     <title>R V Softwares-Realize your Vision</title>
 
-<!-- Bootstrap core CSS -->
-<link href="./css/bootstrap.css" rel="stylesheet">
-<link rel="stylesheet"
-	href="http://jqueryvalidation.org/files/demo/site-demos.css">
+    <!-- Bootstrap core CSS -->
+    <link href="./css/bootstrap.css" rel="stylesheet">
+    <!-- Custom styles -->
+    <link href="./css/custom.css" rel="stylesheet">
 
-<!-- Custom styles -->
-<link href="./css/custom.css" rel="stylesheet">
+    <!-- Bootstrap extended CSS -->
+    <link rel='stylesheet prefetch' href='./css/bootstrapValidator.min.css'>
+    <link rel='stylesheet prefetch' href='./css/bootstrap-theme.min.css'>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="./js/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="./js/jquery.min.js"><\/script>')</script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/modernizr.js" type="text/javascript"></script>
+    <script src='./js/bootstrapvalidator.min.js'></script>
 
 <style>
+#success_message {
+	display: none;
+}
+
 body {
 	padding-top: 50px;
 }
@@ -30,23 +44,84 @@ body {
 </head>
 
 <script>
-	
-	function validateemail()  
-	{  
-		var x=document.contactForm.mail.value;
-		var atposition=x.indexOf("@");  
-		var dotposition=x.lastIndexOf(".");  
-		if (atposition<1 || dotposition < atposition+2 || dotposition+2>=x.length){  
-			  alert("Please enter a valid e-mail address");  
-			  return false;  
-		}
-		var name=document.contactForm.name.value;
-		if (name == null || name == "") {
-	        alert("Name must be filled out");
-	        return false;
-	    }
-	}  
+	$(document)
+			.ready(
+					function() {
+						$('#contact_form')
+								.bootstrapValidator(
+										{
+											feedbackIcons : {
+												valid : 'glyphicon glyphicon-ok',
+												invalid : 'glyphicon glyphicon-remove',
+												validating : 'glyphicon glyphicon-refresh'
+											},
+											fields : {
+												name : {
+													validators : {
+														stringLength : {
+															min : 2,
+														},
+														notEmpty : {
+															message : 'Please enter your name'
+														}
+													}
+												},
+												mail : {
+													validators : {
+														notEmpty : {
+															message : 'Please enter your email address'
+														},
+														emailAddress : {
+															message : 'Please enter a valid email address'
+														}
+													}
+												},
+												phone : {
+													validators : {
+														notEmpty : {
+															message : 'Please enter your phone number'
+														},
+													}
+												},
+												comment : {
+													validators : {
+														stringLength : {
+															max : 200,
+															message : 'Please enter feedback no more than 200 char'
+														},
+														notEmpty : {
+															message : 'Please enter your feedback'
+														}
+													}
+												}
+											}
+										})
+								.on(
+										'success.form.bv',
+										function(e) {
+											$('#success_message').slideDown({
+												opacity : "show"
+											}, "slow") // Do something ...
+											$('#contact_form').data(
+													'bootstrapValidator')
+													.resetForm();
+											// Prevent form submission
+											e.preventDefault();
+											// Get the form instance
+											var $form = $(e.target);
+											// Get the BootstrapValidator instance
+											var bv = $form
+													.data('bootstrapValidator');
+											// Use Ajax to submit form data
+											$.post($form.attr('action'), $form
+													.serialize(), function(
+													result) {
+												console.log(result);
+											}, 'json');
+										});
+					});
 </script>
+
 <body data-spy="scroll" data-target=".navbar" data-offset="70">
 
 	<div class="container">
@@ -85,11 +160,6 @@ body {
 
 
 	<div class="container">
-		<!-- 
-  <div class="page-header">
-    <h1 class="page-heading-font">Contact Us</h1>
-  </div>
-  -->
 
 		<!-- START Contact Mails -->
 		<div class="row">
@@ -117,71 +187,102 @@ body {
 
 <a id="QuickContact">&nbsp;</a>
 
-  <!-- Start quick contact us Form -->
-  <div class="row">
 
-			<div class="contact-form">
-				<form id="contactform" name="contactForm" method="POST" action="feedback?type=contact" onsubmit="return validateemail();">
-					<h3 class="section-heading-font">Quick Contact</h3>
-					<h5 class="paragraph-content-font" style="margin-bottom: 20px">Want
+<div class="container">
+
+		<form class="well form-horizontal"  action="feedback?type=contact" 	method="post" id="contact_form">
+			<fieldset>
+
+				<!-- Form Name -->
+				<legend>Quick Contact !!</legend>
+
+				<h5 class="paragraph-content-font" style="margin-bottom: 20px">Want
 						us to contact you? Please fill the below form.</h5>
-					<div id="success"></div>
-					<div class="form-group col-sm-6">
-						<label>Name <span class="required">*</span></label> <input
-							class="form-control" type="text" name="name" id="name"
-							placeholder="Enter Name"> <label
-							class="label label-danger" style="display: none" id="errconcname"></label>
+				<!-- Text input-->
+				<div class="form-group">
+					<label class="col-md-4 control-label">Name</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-user"></i></span> <input name="name"
+								placeholder="Name" class="form-control" type="text">
+						</div>
 					</div>
-					<div class="form-group col-sm-6">
-						<label>Email <span class="required">*</span></label> <input
-							class="form-control" type="text" name="mail" id="mail"
-							placeholder="Enter Email Address" > <label
-							class="label label-danger" style="display: none"
-							id="errconcemail"></label>
+				</div>
+
+				<!-- Text input-->
+				<div class="form-group">
+					<label class="col-md-4 control-label">E-Mail</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-envelope"></i></span> <input name="mail"
+								placeholder="E-Mail Address" class="form-control" type="text">
+						</div>
 					</div>
+				</div>
 
-					<div class="form-group col-sm-6">
-						<label>Telephone</label> <input class="form-control" type="text"
-							name="phone" id="phone" placeholder="Enter Mobile Number">
+
+				<!-- Text input-->
+
+				<div class="form-group">
+					<label class="col-md-4 control-label">Phone #</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-earphone"></i></span> <input name="phone"
+								placeholder="Phone Number" class="form-control" type="text">
+						</div>
 					</div>
+				</div>
 
-					<div class="form-group col-sm-6">
-						<label>Company Name</label> <input class="form-control"
-							type="text" name="company" id="company"
-							placeholder="Enter Company Name">
+				<!-- Text input-->
+				<div class="form-group">
+					<label class="col-md-4 control-label">Company Name</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-home"></i></span> <input name="company"
+								placeholder="Company Name" class="form-control" type="text">
+						</div>
 					</div>
+				</div>
 
-					<div class="form-group col-sm-6">
-						<label>Area of Interest</label>
-						</br>
-						<p>
-							<input type="checkbox" data-label="suffix" name="aoi" value="1">e-Commerce</input>
-							<input type="checkbox" data-label="suffix" name="aoi" value="2">Big Data, Cloud & Analytics</input> 
-							<input type="checkbox" data-label="suffix" name="aoi" value="3">Mobile App Development</input>
-						</p>
-						<p>
-							<input type="checkbox" data-label="suffix" name="aoi" value="4">BI & DWH </input>
-							<input type="checkbox" data-label="suffix" name="aoi" value="5">Location Based Services</input> 
-							<input type="checkbox" data-label="suffix" name="aoi" value="6">Others</input>
-						</p>
+				<div class="form-group">
+					<label class="col-md-4 control-label">Feedback</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-pencil"></i></span>
+							<textarea class="form-control" name="comment"
+								placeholder="Feedback"></textarea>
+						</div>
 					</div>
+				</div>
 
-					<div class="form-group col-sm-6">
-						<label>Comments</label>
-						<textarea class="form-control" name="comment" id="comment"
-							placeholder="Please let us know what can we do for you"></textarea>
+				<!-- Success message -->
+				<div class="alert alert-success" role="alert" id="success_message">
+					Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for
+					contacting us, we will get back to you shortly.
+				</div>
+
+				<!-- Button -->
+				<div class="form-group">
+					<label class="col-md-4 control-label"></label>
+					<div class="col-md-4">
+						<button type="submit" class="btn btn-warning">
+							Send <span class="glyphicon glyphicon-send"></span>
+						</button>
 					</div>
+				</div>
 
-					<div>
-						<button class="btn btn-lg btn-primary" type="submit" >Submit</button>
-					</div>
-				</form>
-			</div>
-			<!-- End quick contact us Form -->
+			</fieldset>
+		</form>
+	</div>
+	</div>
+	<!-- /.container -->
 
-		</div>
-
-
+	<div class="container">
 		<div class="section-header">
 			<h2 class="section-heading-font">Our Locations</h2>
 		</div>
@@ -192,7 +293,7 @@ body {
   <div class="row">
     <div class="col-sm-6">
 	    <p>&nbsp;</p>
-	    <h3 class="section-heading-font">California </h3>
+	    <h3 class="section-heading-font">California</h3>
 		<p class="paragraph-content-font"><b>R V Softwares Inc.</b></p>
 		<p class="paragraph-content-font">5261 NW 90th Terrace, Coral Springs, FL - 33067</p>
 		<p class="paragraph-content-font">Office Phone: +1 (703)-691-0400</p>
@@ -223,7 +324,7 @@ body {
     <span class="paragraph-content-font">&nbsp;</span>
   </div>
 
-	</div>
+</div>
 
 
 <!-- Start Semi Footer -->
@@ -264,14 +365,5 @@ body {
 
 
 
-	<!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="./js/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="./js/jquery.min.js"><\/script>')</script>
-    <script src="./js/bootstrap.min.js"></script>
-
-	<script src="./js/transition.js"></script>
-	<script src="./js/collapse.js"></script>
 </body>
 </html>
