@@ -11,28 +11,26 @@
 
     <title>R V Softwares-Realize your Vision</title>
 
-<!-- Bootstrap core CSS -->
-<script src="./js/modernizr.js" type="text/javascript"></script>
-<script src='./js/jquery.min.js'></script>
-<script src='./js/bootstrap.min.js'></script>
-<script src='./js/bootstrapvalidator.min.js'></script>
+    <!-- Bootstrap core CSS -->
+    <link href="./css/bootstrap.css" rel="stylesheet">
+    <!-- Custom styles -->
+    <link href="./css/custom.css" rel="stylesheet">
 
-<link href="./css/bootstrap.css" rel="stylesheet">
-<link href="./css/custom.css" rel="stylesheet">
-<link rel='stylesheet prefetch' href='./css/bootstrapValidator.min.css'>
-<link rel='stylesheet prefetch' href='./css/bootstrap-theme.min.css'>
+    <!-- Bootstrap extended CSS -->
+    <link rel='stylesheet prefetch' href='./css/bootstrapValidator.min.css'>
+    <link rel='stylesheet prefetch' href='./css/bootstrap-theme.min.css'>
 
 
-<style>
-#success_message {
-	display: none;
-}
+	<style>
+	#success_message {
+		display: none;
+	}
 
-body {
-	padding-top: 50px;
-}
-/* changed from 70px to 50 px */
-</style>
+	body {
+		padding-top: 50px;
+	}
+	/* changed from 70px to 50 px */
+	</style>
 
 
 </head>
@@ -127,9 +125,10 @@ body {
 					<button type="button" class="navbar-toggle collapsed"
 						data-toggle="collapse" data-target="#navbar" aria-expanded="false"
 						aria-controls="navbar">
-						<span class="sr-only">Toggle navigation</span> <span
-							class="icon-bar"></span> <span class="icon-bar"></span> <span
-							class="icon-bar"></span>
+						<span class="sr-only">Toggle navigation</span> 
+						<span class="icon-bar"></span> 
+						<span class="icon-bar"></span> 
+						<span class="icon-bar"></span>
 					</button>
 					<div class="navbar-brand">
 						<img src="./images/favicon.ico" />
@@ -153,16 +152,19 @@ body {
 <img class="img-responsive" src="./images/contact.jpg"/>
 
 
-<div class="container">
+<div class="container" style="margin-top:20px;">
+
+  <!-- Start quick contact us Form -->
+  <div class="row">
 
 		<form class="well form-horizontal" action="feedback?type=feedback"
 			method="post" id="contact_form">
 			<fieldset>
 
 				<!-- Form Name -->
-				<legend>Feedback !!</legend>
+				<legend class="section-heading-font"><h3>Feedback !!</h3></legend>
 
-				<h5 class="paragraph-content-font" style="margin-bottom: 20px">Thanks
+				<h5 class="paragraph-content-font" style="margin-bottom: 30px">Thanks
 					for choosing to share your valuable feedbacks with us. Please fill
 					the below form.</h5>
 				<!-- Text input-->
@@ -285,5 +287,18 @@ body {
 </footer>
 <!-- Start Footer -->
 
-</body>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="./js/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="./js/jquery.min.js"><\/script>')</script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/modernizr.js" type="text/javascript"></script>
+    <script src='./js/bootstrapvalidator.min.js'></script>
+	<script src="./js/transition.js"></script>
+	<script src="./js/collapse.js"></script>
+
+  </body>
 </html>
