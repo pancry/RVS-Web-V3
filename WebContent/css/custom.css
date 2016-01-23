@@ -1,28 +1,39 @@
 @CHARSET "ISO-8859-1";
 
-
-.navbar-tagline {
-  color: #0c10c2;
-  font-size:10pt;
-  font-family: 'Verdana';
+label {
+  font-size: 14pt; /* newly added */
+  font-family:'Calibri'; /* newly added */
 }
 
-.navbar-companyName{
-  color: #0c10c2;
-  font-size:14pt;
-  font-family: 'Calibri';
+.navbar-brand {
+  padding: 3px 0px; /* padding changed from 15 px to 3 px and 15 px to 0 px*/
 }
 
-.hr-custom-top {
-  margin-top: 0px;
-  margin-bottom: 0px;
-  border-top: 10px solid #eee;
+.navbar-default {
+  background-color: #ffffff; /* changed from #f8f8f8; */
 }
 
-.hr-custom-bottom {
-  margin-top: 0px;
-  margin-bottom: 20px;
-  border-top: 10px solid #eee;
+.navbar-default .navbar-brand {
+  color: #ff0000; /* changed from #777; */
+}
+
+.navbar-default .navbar-nav > li > a {
+  font-size:12pt; /* newly added */ 
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #004080; /* changed from #333;*/
+  background-color: transparent;
+}
+
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #004080; /* changed from #555 */
+  font-weight: bold; /* newly added */
+  /*background-color: #e7e7e7;*/ /* #e7e7e7*/ /* TODO: NEED TO REMOVE THIS COLOR */
+}
+
+.panel-footer {
+  background-color: #d4d4d4; /* #f5f5f5 */
 }
 
 
@@ -146,14 +157,6 @@
 }
 
 
-/*------- For Collpase section in About US page ***/
-
-.panel-default > .panel-heading-about {
-  color: #333;
-  background-color: #f71739; /* #f5f5f5*/
-  border-color: #ddd;
-}
-
 /*--- contact us page-- quick contact section --- */
 .contact-form {
   background: #f2f2f2;
@@ -163,30 +166,3 @@
   margin: 0 0 40px 0;
   padding: 5px 15px 25px;
 }
-
-/*
-
-.carousel-caption-black {
-  position: absolute;
-  right: 15%;
-  bottom: 20px;
-  left: 15%;
-  z-index: 10;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  color: #000;
-  text-align: right;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
-}
-.carousel-caption-black {
-  text-shadow: none;
-}
-
-@media screen and (min-width: 768px) {
-  .carousel-caption-black {
-    right: 20%;
-    left: 20%;
-    padding-bottom: 30px;
-  }
-}
-*/
