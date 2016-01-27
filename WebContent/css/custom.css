@@ -6,7 +6,7 @@ label {
 }
 
 .navbar-brand {
-  padding: 3px 0px; /* padding changed from 15 px to 3 px and 15 px to 0 px*/
+  padding: 3px 10px; /* padding changed from 15 px to 3 px and 15 px to 10 px*/
 }
 
 .navbar-default {
