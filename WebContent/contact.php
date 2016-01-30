@@ -545,8 +545,7 @@ $(document).ready(function() {
 
 <?php
 
-$to = "prasan.g1981@gmail.com, gupta.ashish.prasad@gmail.com, koti.donepudi@gmail.com, kanchankumar2@gmail.com, pancry@gmail.com, rakesh038@gmail.com";
-//$to = "prasan.g1981@gmail.com";
+$to = "contact@rvsoftwares.com";
 $subject = "Contact Us";
 
 
