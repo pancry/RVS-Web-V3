@@ -257,7 +257,7 @@ $(document).ready(function() {
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="index.html">HOME</a></li>
 						<li><a href="about.html">ABOUT US</a></li>
-						<li class="active"><a href="contact.php">CONTACT</a></li>
+						<li class="active"><a href="contact.html">CONTACT</a></li>
 					</ul>
 				</div>
 				<!--/.nav-collapse -->
@@ -448,10 +448,10 @@ $(document).ready(function() {
   <div class="row">
     <div class="col-sm-6">
 	    <p>&nbsp;</p>
-	    <h3 class="section-heading-font">Florida</h3>
+	    <h3 class="section-heading-font">California</h3>
 		<p class="paragraph-content-font"><b>R V Softwares Inc.</b></p>
 		<p class="paragraph-content-font">5261 NW 90th Terrace, Coral Springs, FL - 33067</p>
-		<p class="paragraph-content-font">Office Phone: +1 (954)-507-6098</p>
+		<p class="paragraph-content-font">Office Phone: +1 (703)-691-0400</p>
 	</div>
     <div class="col-sm-6">
         <iframe align="right" src="contact_1.html" width="400px" height="250px">
@@ -469,7 +469,7 @@ $(document).ready(function() {
 	    <h3 class="section-heading-font">Bangalore</h3>
 		<p class="paragraph-content-font"><b>R V Softwares Pvt. Ltd.</b></p>
 		<p class="paragraph-content-font">#24, 1st Cross, Near SGR Dental College, Munekolala, Marathalli, Bangalore - 560037</p>
-		<p class="paragraph-content-font">Office Phone: +91 (80)-32-92-1792</p>
+		<p class="paragraph-content-font">Office Phone: +91 (80)-40-678-987</p>
 	</div>
     <div class="col-sm-6">
         <iframe align="right" src="contact_2.html" width="400px" height="250px">
@@ -504,11 +504,11 @@ $(document).ready(function() {
          </div>
          <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs" align="center">
              <h5 class="semifooter-heading-font">Call us on:</h5>
-	         <span class="semifooter-font">+1 (954)-507-6098</span>
+	         <span class="semifooter-font">001-987-876</span>
          </div>
          <div class="hidden-lg hidden-md hidden-sm col-xs-12" align="center">
              <h5 class="semifooter-heading-font">Call us on:</h5>
-	         <span class="semifooter-font">+1 (954)-507-6098</span>
+	         <span class="semifooter-font">001-987-876</span>
          </div>
          
          <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs" align="right">
