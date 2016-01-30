@@ -88,14 +88,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
      $phone = test_input($_POST["phone"]);
    }
 
-	$aoiname = $_GET['aoi'];
-	if(isset($_GET['aoi'])) {
-		echo "You chose the following Area of Interest(s): <br>";
-		foreach ($aoiname as $aoi){
-			$aoinameval =  $aoinameval.",".$aoi;
+	$aoiname = $_POST['aoi'];
+	if(isset($_POST['aoi'])) {
+		//echo "You chose the following Area of Interest(s): <br>";
+		//foreach ($aoiname as $aoi){
+		//	$aoinameval =  $aoinameval.",".$aoi;
+		//}
+		foreach($aoiname as $selected){
+			if(empty($aoinameval)){
+				$aoinameval =  $selected;
+			}else{
+				$aoinameval =  $aoinameval.", ".$selected;
+			}
+			
 		}
 	}
-
 
 }
 
@@ -287,7 +294,7 @@ $(document).ready(function() {
 				<h2 class="section-heading-font">Support</h2>
 				<p class="paragraph-content-font">We are available 24/7 to
 					support our customers. Approach us if you need any support.</p>
-				<a href="mailto:sales@rvsoftwares.com"
+				<a href="mailto:support@rvsoftwares.com"
 					class="paragraph-content-font-maillink">support@rvsoftwares.com</a>
 				<p>&nbsp;</p>
 
@@ -368,27 +375,27 @@ $(document).ready(function() {
 			<div class="col-md-8">
 		    	<div class="checkbox">
 			    	<label class="checkbox-inline col-md-8">
-						<input type="checkbox" name="aoi[]" id="aoi" value="1"> E-Commerce
+						<input type="checkbox" name="aoi[]" id="aoi" value="E-Commerce"> E-Commerce
 					</label>
 					<br>
 					<label class="checkbox-inline col-md-8">
-					  	<input type="checkbox" name="aoi[]" id="aoi" value="2"> BI & DWH
+					  	<input type="checkbox" name="aoi[]" id="aoi" value="BI & DWH"> BI & DWH
 					</label>
 					<br>
 					<label class="checkbox-inline col-md-8">
-					  	<input type="checkbox" name="aoi[]" id="aoi" value="4"> Big Data, Cloud & Analytics
+					  	<input type="checkbox" name="aoi[]" id="aoi" value="Big Data, Cloud & Analytics"> Big Data, Cloud & Analytics
 					</label>
 					<br>
 					<label class="checkbox-inline col-md-8">
-					  	<input type="checkbox" name="aoi[]"  id="aoi" value="5"> Location Based Services
+					  	<input type="checkbox" name="aoi[]"  id="aoi" value="Location Based Services"> Location Based Services
 					</label>
 					<br>
 					<label class="checkbox-inline col-md-8">
-					  	<input type="checkbox" name="aoi[]" id="aoi" value="3"> Mobile App Development
+					  	<input type="checkbox" name="aoi[]" id="aoi" value="Mobile App Development"> Mobile App Development
 					</label>
 					<br>
 					<label class="checkbox-inline col-md-8">
-					  	<input type="checkbox" name="aoi[]" id="aoi" value="6"> Others
+					  	<input type="checkbox" name="aoi[]" id="aoi" value="Others"> Others
 					</label>
 		    	</div>
 			</div>
@@ -545,7 +552,7 @@ $(document).ready(function() {
 
 <?php
 
-$to = "contact@rvsoftwares.com";
+$to = "pancry@gmail.com";
 $subject = "Contact Us";
 
 
@@ -559,6 +566,9 @@ $message =  "<html>
 <div style=\"line-height:19.2pt;background-image:initial;background-color:white\">&nbsp;</div>
 <div style=\"line-height:19.2pt;background-image:initial;background-color:white\"><span style=\"color:rgb(34,34,34)\"><span style=\"font-family:arial,sans-serif\"><span style=\"font-size:11.5pt\">You got a mail from Customer $name !!!</span></span></span></div>
 <div style=\"line-height:19.2pt;background-image:initial;background-color:white\">&nbsp;</div>
+<div style=\"margin-bottom:0.0001pt;line-height:19.2pt;background-image:initial;background-color:white\">&nbsp;</div>
+<div style=\"margin-bottom:0.0001pt;line-height:19.2pt;background-image:initial;background-color:white\"><strong><span style=\"color:rgb(34,34,34)\"><span style=\"font-family:arial,sans-serif\"><span style=\"font-size:11.5pt\">Area of Interest</span></span></span></strong></div>
+<div style=\"line-height:19.2pt;background-image:initial;background-color:white\"><span style=\"color:rgb(34,34,34)\"><span style=\"font-family:arial,sans-serif\"><span style=\"font-size:11.5pt\">$aoinameval <br>
 <div style=\"margin-bottom:0.0001pt;line-height:19.2pt;background-image:initial;background-color:white\">&nbsp;</div>
 <div style=\"margin-bottom:0.0001pt;line-height:19.2pt;background-image:initial;background-color:white\"><strong><span style=\"color:rgb(34,34,34)\"><span style=\"font-family:arial,sans-serif\"><span style=\"font-size:11.5pt\">Comment</span></span></span></strong></div>
 <div style=\"line-height:19.2pt;background-image:initial;background-color:white\"><span style=\"color:rgb(34,34,34)\"><span style=\"font-family:arial,sans-serif\"><span style=\"font-size:11.5pt\">$comment <br>
@@ -581,6 +591,7 @@ $message =  "<html>
 $headers = "MIME-Version: 1.0" . "\r\n";
 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 $headers .= 'From: <contactus@rvsoftwares.com>' . "\r\n";
+//$headers .= "From: <$email>" . "\r\n";
 
 mail($to,$subject, $message ,$headers);
 
