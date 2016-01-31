@@ -28,7 +28,7 @@
     <script src="./js/bootstrap.min.js"></script>
     <script src="./js/modernizr.js" type="text/javascript"></script>
     <script src='./js/bootstrapvalidator.min.js'></script>
-
+	<script src='https://www.google.com/recaptcha/api.js'></script>	
 <style>
 #success_message {
 	display: none;
@@ -40,95 +40,30 @@ body {
 /* changed from 70px to 50 px */
 </style>
 
-
 </head>
 
-<?php
-// define variables and set to empty values
-$nameErr = $emailErr = "";
-$phone = $company = $name = $email = $comment = $aoinameval = $aoiname = "";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-   if (empty($_POST["name"])) {
-     $nameErr = "Name is required";
-   } else {
-     $name = test_input($_POST["name"]);
-     // check if name only contains letters and whitespace
-     if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
-       $nameErr = "Only letters and white space allowed"; 
-     }
-   }
-   
-   if (empty($_POST["mail"])) {
-     $emailErr = "Email is required";
-   } else {
-     $email = test_input($_POST["mail"]);
-     // check if e-mail address is well-formed
-     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-       $emailErr = "Invalid email format"; 
-     }
-   } 
-
-   if (empty($_POST["comment"])) {
-     $comment = "";
-   } else {
-     $comment = test_input($_POST["comment"]);
-   }
-
-
-   if (empty($_POST["company"])) {
-     $company = "";
-   } else {
-     $company = test_input($_POST["company"]);
-   }
-
-   if (empty($_POST["phone"])) {
-     $phone = "";
-   } else {
-     $phone = test_input($_POST["phone"]);
-   }
-
-	$aoiname = $_GET['aoi'];
-	if(isset($_GET['aoi'])) {
-		echo "You chose the following Area of Interest(s): <br>";
-		foreach ($aoiname as $aoi){
-			$aoinameval =  $aoinameval.",".$aoi;
-		}
+<script type="text/javascript" language="javascript">
+function enableBtn(){
+	$('button').prop('disabled', false);
+}
+</script>
+<script type="text/javascript" language="javascript">
+function validateform(){
+	
+	var captcha_response = grecaptcha.getResponse();
+	if(captcha_response.length == 0)
+	{
+       // document.getElementById('help-block').innerHTML="You can't leave Captcha Code empty"; 
+	    return false;
 	}
-
-
+	else
+	{ 
+        //document.getElementById('help-block').innerHTML="Captcha completed";
+	    return true;
+	}
 }
 
-function test_input($data) {
-   $data = trim($data);
-   $data = stripslashes($data);
-   $data = htmlspecialchars($data);
-   return $data;
-}
-?>
-
-
-<script>
-$(document).ready(function() {
-    $('#contact_form').formValidation({
-        ...
-        addOns: {
-            reCaptcha2: {
-                element: 'captchaContainer',
-                theme: 'light',
-                siteKey: '6LdgOwETAAAAALA9auuNVKFeXizXcYFrKOVC_vs-',
-                timeout: 120,
-                message: 'The captcha is not valid'
-            }
-        },
-        fields: {
-            ...
-            'g-recaptcha-response': {
-                err: '#captchaMessage'
-            }
-        }
-    });
-});
 </script>
 
 <script>
@@ -136,13 +71,6 @@ $(document).ready(function() {
 			.ready(
 					function() {
 						
-						 // Generate a simple captcha
-					    function randomNumber(min, max) {
-					        return Math.floor(Math.random() * (max - min + 1) + min);
-					    }
-					    $('#captchaOperation').html([randomNumber(1, 100), '+', randomNumber(1, 200), '='].join(' '));
-
-					    
 					    
 						$('#contact_form')
 								.bootstrapValidator(
@@ -180,17 +108,6 @@ $(document).ready(function() {
 														},
 													}
 												},
-												captcha: {
-									                validators: {
-									                    callback: {
-									                        message: 'Wrong answer',
-									                        callback: function(value, validator, $field) {
-									                            var items = $('#captchaOperation').html().split(' '), sum = parseInt(items[0]) + parseInt(items[2]);
-									                            return value == sum;
-									                        }
-									                    }
-									                }
-									            },
 												comment : {
 													validators : {
 														stringLength : {
@@ -257,7 +174,7 @@ $(document).ready(function() {
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="index.html">HOME</a></li>
 						<li><a href="about.html">ABOUT US</a></li>
-						<li class="active"><a href="contact.html">CONTACT</a></li>
+						<li class="active"><a href="contact.php">CONTACT</a></li>
 					</ul>
 				</div>
 				<!--/.nav-collapse -->
@@ -287,7 +204,7 @@ $(document).ready(function() {
 				<h2 class="section-heading-font">Support</h2>
 				<p class="paragraph-content-font">We are available 24/7 to
 					support our customers. Approach us if you need any support.</p>
-				<a href="mailto:sales@rvsoftwares.com"
+				<a href="mailto:support@rvsoftwares.com"
 					class="paragraph-content-font-maillink">support@rvsoftwares.com</a>
 				<p>&nbsp;</p>
 
@@ -302,7 +219,7 @@ $(document).ready(function() {
 <div class="col-sm-2"><p>&nbsp;</p></div>
 <div class="col-sm-8">
 
-  <form class="well form-horizontal"  action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" 	method="post" id="contact_form">
+  <form class="well form-horizontal"  action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" onsubmit="return validateform();" method="post" id="contact_form">
 
     <fieldset>
 
@@ -368,27 +285,27 @@ $(document).ready(function() {
 			<div class="col-md-8">
 		    	<div class="checkbox">
 			    	<label class="checkbox-inline col-md-8">
-						<input type="checkbox" name="aoi[]" id="aoi" value="1"> E-Commerce
+						<input type="checkbox" name="aoi[]" id="aoi" value="E-Commerce"> E-Commerce
 					</label>
 					<br>
 					<label class="checkbox-inline col-md-8">
-					  	<input type="checkbox" name="aoi[]" id="aoi" value="2"> BI & DWH
+					  	<input type="checkbox" name="aoi[]" id="aoi" value="BI & DWH"> BI & DWH
 					</label>
 					<br>
 					<label class="checkbox-inline col-md-8">
-					  	<input type="checkbox" name="aoi[]" id="aoi" value="4"> Big Data, Cloud & Analytics
+					  	<input type="checkbox" name="aoi[]" id="aoi" value="Big Data, Cloud & Analytics"> Big Data, Cloud & Analytics
 					</label>
 					<br>
 					<label class="checkbox-inline col-md-8">
-					  	<input type="checkbox" name="aoi[]"  id="aoi" value="5"> Location Based Services
+					  	<input type="checkbox" name="aoi[]"  id="aoi" value="Location Based Services"> Location Based Services
 					</label>
 					<br>
 					<label class="checkbox-inline col-md-8">
-					  	<input type="checkbox" name="aoi[]" id="aoi" value="3"> Mobile App Development
+					  	<input type="checkbox" name="aoi[]" id="aoi" value="Mobile App Development"> Mobile App Development
 					</label>
 					<br>
 					<label class="checkbox-inline col-md-8">
-					  	<input type="checkbox" name="aoi[]" id="aoi" value="6"> Others
+					  	<input type="checkbox" name="aoi[]" id="aoi" value="Others"> Others
 					</label>
 		    	</div>
 			</div>
@@ -406,14 +323,14 @@ $(document).ready(function() {
 			</div>
 		</div>
 
+		<div class="form-group">
+			<label class="col-md-4 control-label"></label>
+			<div class="col-md-4 inputGroupContainer">
+				<div class="g-recaptcha" data-sitekey="6LeZ3RYTAAAAACoQg6MRcxH930-egrO3VLQE3Dmz" data-callback="enableBtn"></div>
+	            <span class="help-block" >Please check that you are not a robot.</span>	            
+			</div>
+		</div>
 
-		 <div class="form-group">
-		        <label class="col-md-4 control-label" id="captchaOperation"></label>
-		        <div class="col-md-4 inputGroupContainer">
-		            <input type="text" class="form-control" name="captcha" />
-		        </div>
-		    </div>
-		    
 		<!-- Success message -->
 		<div class="alert alert-success" role="alert" id="success_message">
 			Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for contacting us, we will get back to you shortly.
@@ -423,7 +340,7 @@ $(document).ready(function() {
 		<div class="form-group">
 			<label class="col-md-4 control-label"></label>
 			<div class="col-md-4">
-				<button type="submit" class="btn btn-warning">
+				<button  type="submit" class="btn btn-warning">
 					Send 
 					<span class="glyphicon glyphicon-send"></span>
 				</button>
@@ -448,10 +365,10 @@ $(document).ready(function() {
   <div class="row">
     <div class="col-sm-6">
 	    <p>&nbsp;</p>
-	    <h3 class="section-heading-font">California</h3>
+	    <h3 class="section-heading-font">Florida</h3>
 		<p class="paragraph-content-font"><b>R V Softwares Inc.</b></p>
 		<p class="paragraph-content-font">5261 NW 90th Terrace, Coral Springs, FL - 33067</p>
-		<p class="paragraph-content-font">Office Phone: +1 (703)-691-0400</p>
+		<p class="paragraph-content-font">Office Phone: +1 (954)-507-6098</p>
 	</div>
     <div class="col-sm-6">
         <iframe align="right" src="contact_1.html" width="400px" height="250px">
@@ -469,7 +386,7 @@ $(document).ready(function() {
 	    <h3 class="section-heading-font">Bangalore</h3>
 		<p class="paragraph-content-font"><b>R V Softwares Pvt. Ltd.</b></p>
 		<p class="paragraph-content-font">#24, 1st Cross, Near SGR Dental College, Munekolala, Marathalli, Bangalore - 560037</p>
-		<p class="paragraph-content-font">Office Phone: +91 (80)-40-678-987</p>
+		<p class="paragraph-content-font">Office Phone: +91 (80)-32-92-1792</p>
 	</div>
     <div class="col-sm-6">
         <iframe align="right" src="contact_2.html" width="400px" height="250px">
@@ -504,11 +421,11 @@ $(document).ready(function() {
          </div>
          <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs" align="center">
              <h5 class="semifooter-heading-font">Call us on:</h5>
-	         <span class="semifooter-font">001-987-876</span>
+	         <span class="semifooter-font">+1 (954)-507-6098</span>
          </div>
          <div class="hidden-lg hidden-md hidden-sm col-xs-12" align="center">
              <h5 class="semifooter-heading-font">Call us on:</h5>
-	         <span class="semifooter-font">001-987-876</span>
+	         <span class="semifooter-font">+1 (954)-507-6098</span>
          </div>
          
          <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs" align="right">
@@ -542,48 +459,116 @@ $(document).ready(function() {
 </footer>
 <!-- Start Footer -->
 
-
 <?php
+// define variables and set to empty values
+$nameErr = $emailErr = "";
+$phone = $company = $name = $email = $comment = $aoinameval = $aoiname = "";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+   if (empty($_POST["name"])) {
+     $nameErr = "Name is required";
+   } else {
+     $name = test_input($_POST["name"]);
+     // check if name only contains letters and whitespace
+     if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
+       $nameErr = "Only letters and white space allowed"; 
+     }
+   }
+   
+   if (empty($_POST["mail"])) {
+     $emailErr = "Email is required";
+   } else {
+     $email = test_input($_POST["mail"]);
+     // check if e-mail address is well-formed
+     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+       $emailErr = "Invalid email format"; 
+     }
+   } 
 
-$to = "prasan.g1981@gmail.com, gupta.ashish.prasad@gmail.com, koti.donepudi@gmail.com, kanchankumar2@gmail.com, pancry@gmail.com, rakesh038@gmail.com";
-//$to = "prasan.g1981@gmail.com";
-$subject = "Contact Us";
+   if (empty($_POST["comment"])) {
+     $comment = "";
+   } else {
+     $comment = test_input($_POST["comment"]);
+   }
 
 
-$message =  "<html>
-<head>
-<title>Contact Us</title>
-</head>
-<body>	
-<div style=\"font-family:sans-serif,Arial,Verdana,'Trebuchet MS';font-size:13px;color:rgb(51,51,51);background-color:rgb(255,255,255);margin-top:20px;margin-right:20px;margin-bottom:20px;margin-left:20px;line-height:1.6em\">
-<div style=\"line-height:19.2pt;background-image:initial;background-color:white\"><span style=\"color:rgb(34,34,34)\"><span style=\"font-family:arial,sans-serif\"><span style=\"font-size:11.5pt\">Dear Admin,</span></span></span></div>
-<div style=\"line-height:19.2pt;background-image:initial;background-color:white\">&nbsp;</div>
-<div style=\"line-height:19.2pt;background-image:initial;background-color:white\"><span style=\"color:rgb(34,34,34)\"><span style=\"font-family:arial,sans-serif\"><span style=\"font-size:11.5pt\">You got a mail from Customer $name !!!</span></span></span></div>
-<div style=\"line-height:19.2pt;background-image:initial;background-color:white\">&nbsp;</div>
-<div style=\"margin-bottom:0.0001pt;line-height:19.2pt;background-image:initial;background-color:white\">&nbsp;</div>
-<div style=\"margin-bottom:0.0001pt;line-height:19.2pt;background-image:initial;background-color:white\"><strong><span style=\"color:rgb(34,34,34)\"><span style=\"font-family:arial,sans-serif\"><span style=\"font-size:11.5pt\">Comment</span></span></span></strong></div>
-<div style=\"line-height:19.2pt;background-image:initial;background-color:white\"><span style=\"color:rgb(34,34,34)\"><span style=\"font-family:arial,sans-serif\"><span style=\"font-size:11.5pt\">$comment <br>
-</span></span></span></div>
-<div style=\"line-height:19.2pt;background-image:initial;background-color:white\">&nbsp;</div>
-<div style=\"margin-bottom:0.0001pt;line-height:19.2pt;background-image:initial;background-color:white\">&nbsp;</div>
-<div style=\"margin-bottom:0.0001pt;line-height:19.2pt;background-image:initial;background-color:white\"><span style=\"color:rgb(34,34,34)\"><span style=\"font-family:arial,sans-serif\"><span style=\"font-size:11.5pt\">Thanks&nbsp;</span></span></span></div>
-<div style=\"margin-bottom:0.0001pt;line-height:19.2pt;background-image:initial;background-color:white\"><span style=\"color:rgb(34,34,34)\"><span style=\"font-family:arial,sans-serif\"><span style=\"font-size:11.5pt\">$name</span></span></span></div>
-<div style=\"margin-bottom:0.0001pt;line-height:19.2pt;background-image:initial;background-color:white\"><span style=\"color:rgb(34,34,34)\"><span style=\"font-family:arial,sans-serif\"><span style=\"font-size:11.5pt\">Phone: $phone</span></span></span></div>
-<div style=\"margin-bottom:0.0001pt;line-height:19.2pt;background-image:initial;background-color:white\"><span style=\"color:rgb(34,34,34)\"><span style=\"font-family:arial,sans-serif\"><span style=\"font-size:11.5pt\">EmailId: $email</span></span></span></div>
-<div style=\"margin-bottom:0.0001pt;line-height:19.2pt;background-image:initial;background-color:white\"><span style=\"color:rgb(34,34,34)\"><span style=\"font-family:arial,sans-serif\"><span style=\"font-size:11.5pt\">Company: $company</span></span></span></div>
-<div style=\"margin-bottom:0.0001pt;line-height:19.2pt;background-image:initial;background-color:white\">&nbsp;</div>
-<div style=\"line-height:19.2pt;background-image:initial;background-color:white\"><span style=\"color:rgb(34,34,34)\"><span style=\"font-family:arial,sans-serif\"><span style=\"font-size:11.5pt\">This mail is sent via RV Softwares</span></span></span></div>
-<div>&nbsp;</div>
-</div>
-</body>
-</html>
-";
+   if (empty($_POST["company"])) {
+     $company = "";
+   } else {
+     $company = test_input($_POST["company"]);
+   }
 
-$headers = "MIME-Version: 1.0" . "\r\n";
-$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-$headers .= 'From: <contactus@rvsoftwares.com>' . "\r\n";
+   if (empty($_POST["phone"])) {
+     $phone = "";
+   } else {
+     $phone = test_input($_POST["phone"]);
+   }
 
-mail($to,$subject, $message ,$headers);
+	$aoiname = $_POST['aoi'];
+	if(isset($_POST['aoi'])) {
+		//echo "You chose the following Area of Interest(s): <br>";
+		//foreach ($aoiname as $aoi){
+		//	$aoinameval =  $aoinameval.",".$aoi;
+		//}
+		foreach($aoiname as $selected){
+			if(empty($aoinameval)){
+				$aoinameval =  $selected;
+			}else{
+				$aoinameval =  $aoinameval.", ".$selected;
+			}
+			
+		}
+	}
+
+	$to = "panry@gmail.com, prasan.g1981@gmail.com";
+	$subject = "Contact Us";
+	
+	
+	$message =  "<html>
+	<head>
+	<title>Contact Us</title>
+	</head>
+	<body>	
+	<div style=\"font-family:sans-serif,Arial,Verdana,'Trebuchet MS';font-size:13px;color:rgb(51,51,51);background-color:rgb(255,255,255);margin-top:20px;margin-right:20px;margin-bottom:20px;margin-left:20px;line-height:1.6em\">
+	<div style=\"line-height:19.2pt;background-image:initial;background-color:white\"><span style=\"color:rgb(34,34,34)\"><span style=\"font-family:arial,sans-serif\"><span style=\"font-size:11.5pt\">Dear Admin,</span></span></span></div>
+	<div style=\"line-height:19.2pt;background-image:initial;background-color:white\">&nbsp;</div>
+	<div style=\"line-height:19.2pt;background-image:initial;background-color:white\"><span style=\"color:rgb(34,34,34)\"><span style=\"font-family:arial,sans-serif\"><span style=\"font-size:11.5pt\">You got a mail from Customer $name !!!</span></span></span></div>
+	<div style=\"line-height:19.2pt;background-image:initial;background-color:white\">&nbsp;</div>
+	<div style=\"margin-bottom:0.0001pt;line-height:19.2pt;background-image:initial;background-color:white\">&nbsp;</div>
+	<div style=\"margin-bottom:0.0001pt;line-height:19.2pt;background-image:initial;background-color:white\"><strong><span style=\"color:rgb(34,34,34)\"><span style=\"font-family:arial,sans-serif\"><span style=\"font-size:11.5pt\">Area of Interest</span></span></span></strong></div>
+	<div style=\"line-height:19.2pt;background-image:initial;background-color:white\"><span style=\"color:rgb(34,34,34)\"><span style=\"font-family:arial,sans-serif\"><span style=\"font-size:11.5pt\">$aoinameval <br>
+	<div style=\"margin-bottom:0.0001pt;line-height:19.2pt;background-image:initial;background-color:white\">&nbsp;</div>
+	<div style=\"margin-bottom:0.0001pt;line-height:19.2pt;background-image:initial;background-color:white\"><strong><span style=\"color:rgb(34,34,34)\"><span style=\"font-family:arial,sans-serif\"><span style=\"font-size:11.5pt\">Comment</span></span></span></strong></div>
+	<div style=\"line-height:19.2pt;background-image:initial;background-color:white\"><span style=\"color:rgb(34,34,34)\"><span style=\"font-family:arial,sans-serif\"><span style=\"font-size:11.5pt\">$comment <br>
+	</span></span></span></div>
+	<div style=\"line-height:19.2pt;background-image:initial;background-color:white\">&nbsp;</div>
+	<div style=\"margin-bottom:0.0001pt;line-height:19.2pt;background-image:initial;background-color:white\">&nbsp;</div>
+	<div style=\"margin-bottom:0.0001pt;line-height:19.2pt;background-image:initial;background-color:white\"><span style=\"color:rgb(34,34,34)\"><span style=\"font-family:arial,sans-serif\"><span style=\"font-size:11.5pt\">Thanks&nbsp;</span></span></span></div>
+	<div style=\"margin-bottom:0.0001pt;line-height:19.2pt;background-image:initial;background-color:white\"><span style=\"color:rgb(34,34,34)\"><span style=\"font-family:arial,sans-serif\"><span style=\"font-size:11.5pt\">$name</span></span></span></div>
+	<div style=\"margin-bottom:0.0001pt;line-height:19.2pt;background-image:initial;background-color:white\"><span style=\"color:rgb(34,34,34)\"><span style=\"font-family:arial,sans-serif\"><span style=\"font-size:11.5pt\">Phone: $phone</span></span></span></div>
+	<div style=\"margin-bottom:0.0001pt;line-height:19.2pt;background-image:initial;background-color:white\"><span style=\"color:rgb(34,34,34)\"><span style=\"font-family:arial,sans-serif\"><span style=\"font-size:11.5pt\">EmailId: $email</span></span></span></div>
+	<div style=\"margin-bottom:0.0001pt;line-height:19.2pt;background-image:initial;background-color:white\"><span style=\"color:rgb(34,34,34)\"><span style=\"font-family:arial,sans-serif\"><span style=\"font-size:11.5pt\">Company: $company</span></span></span></div>
+	<div style=\"margin-bottom:0.0001pt;line-height:19.2pt;background-image:initial;background-color:white\">&nbsp;</div>
+	<div style=\"line-height:19.2pt;background-image:initial;background-color:white\"><span style=\"color:rgb(34,34,34)\"><span style=\"font-family:arial,sans-serif\"><span style=\"font-size:11.5pt\">This mail is sent via RV Softwares</span></span></span></div>
+	<div>&nbsp;</div>
+	</div>
+	</body>
+	</html>
+	";
+	
+	$headers = "MIME-Version: 1.0" . "\r\n";
+	$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+	$headers .= 'From: <contactus@rvsoftwares.com>' . "\r\n";
+	//$headers .= "From: <$email>" . "\r\n";
+	
+	mail($to,$subject, $message ,$headers);
+}
+function test_input($data) {
+   $data = trim($data);
+   $data = stripslashes($data);
+   $data = htmlspecialchars($data);
+   return $data;
+}
+
 
 ?>
 
