@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="./images/favicon.ico">
 
-    <title>R V Softwares-Realize your Vision</title>
+    <title>RV Softwares-Realize your Vision</title>
 
     <!-- Bootstrap core CSS -->
     <link href="./css/bootstrap.css" rel="stylesheet">
@@ -446,7 +446,7 @@ $(document).ready(function() {
     <div class="col-sm-6">
 	    <p>&nbsp;</p>
 	    <h3 class="section-heading-font">California</h3>
-		<p class="paragraph-content-font"><b>R V Softwares Inc.</b></p>
+		<p class="paragraph-content-font"><b>RV Softwares Inc.</b></p>
 		<p class="paragraph-content-font">5261 NW 90th Terrace, Coral Springs, FL - 33067</p>
 		<p class="paragraph-content-font">Office Phone: +1 (703)-691-0400</p>
 	</div>
@@ -464,7 +464,7 @@ $(document).ready(function() {
     <div class="col-sm-6">
 	    <p>&nbsp;</p>
 	    <h3 class="section-heading-font">Bangalore</h3>
-		<p class="paragraph-content-font"><b>R V Softwares Pvt. Ltd.</b></p>
+		<p class="paragraph-content-font"><b>RV Softwares Pvt. Ltd.</b></p>
 		<p class="paragraph-content-font">#24, 1st Cross, Near SGR Dental College, Munekolala, Marathalli, Bangalore - 560037</p>
 		<p class="paragraph-content-font">Office Phone: +91 (80)-40-678-987</p>
 	</div>
@@ -509,7 +509,7 @@ $(document).ready(function() {
 <!-- Start Footer -->
 <footer class="footer-custom">
   <div class="container">
-    <p class="copyright" align="center">&copy; 2016 <a href="http://www.rvsoftwares.com">R V Softwares</a> All rights reserved.</p>
+    <p class="copyright" align="center">&copy; 2016 <a href="http://www.rvsoftwares.com">RV Softwares</a> All rights reserved.</p>
   	<p class="footer-font" align="center">This website is best experienced on Chrome 31, Firefox 26, Safari 6 or Internet Explorer 9; or later versions of these browsers.</p>
   </div>  
 </footer>

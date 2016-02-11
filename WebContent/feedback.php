@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="./images/favicon.ico">
 
-    <title>R V Softwares-Realize your Vision</title>
+    <title>RV Softwares-Realize your Vision</title>
 
     <!-- Bootstrap core CSS -->
     <link href="./css/bootstrap.css" rel="stylesheet">
@@ -349,7 +349,7 @@ function validateform(){
 <!-- Start Footer -->
 <footer class="footer-custom">
   <div class="container">
-    <p class="copyright" align="center">&copy; 2016 <a href="http://www.rvsoftwares.com">R V Softwares</a> All rights reserved.</p>
+    <p class="copyright" align="center">&copy; 2016 <a href="http://www.rvsoftwares.com">RV Softwares</a> All rights reserved.</p>
   	<p class="footer-font" align="center">This website is best experienced on Chrome 31, Firefox 26, Safari 6 or Internet Explorer 9; or later versions of these browsers.</p>
   </div>  
 </footer>
