@@ -28,10 +28,7 @@
     <script src="./js/bootstrap.min.js"></script>
     <script src="./js/modernizr.js" type="text/javascript"></script>
     <script src='./js/bootstrapvalidator.min.js'></script>
-	
-
-
-    <script src='https://www.google.com/recaptcha/api.js'></script>	
+	<script src='https://www.google.com/recaptcha/api.js'></script>	
 <style>
 #success_message {
 	display: none;
@@ -522,7 +519,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		}
 	}
 
-	$to = "prasan.g1981@gmail.com";
+	$to = "panry@gmail.com, prasan.g1981@gmail.com";
 	$subject = "Contact Us";
 	
 	
