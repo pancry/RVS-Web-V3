@@ -326,8 +326,7 @@ function validateform(){
 		<div class="form-group">
 			<label class="col-md-4 control-label"></label>
 			<div class="col-md-4 inputGroupContainer">
-				<div class="g-recaptcha" data-sitekey="6LeZ3RYTAAAAACoQg6MRcxH930-egrO3VLQE3Dmz" data-callback="enableBtn"></div>
-	            <span class="help-block" >Please check that you are not a robot.</span>	            
+				<div class="g-recaptcha" data-sitekey="6LeZ3RYTAAAAACoQg6MRcxH930-egrO3VLQE3Dmz" data-callback="enableBtn" style="transform:scale(0.77);-webkit-transform:scale(0.77);transform-origin:0 0;-webkit-transform-origin:0 0;"></div>
 			</div>
 		</div>
 
@@ -405,9 +404,9 @@ function validateform(){
       <div class="row">
          <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs" align="left">
              <h5 class="semifooter-heading-font">Quick Links</h5>
-                <a href="feedback.html" class="semifooter-font">FEEDBACK</a>
+                <a href="feedback.php" class="semifooter-font">FEEDBACK</a>
 				<span class="semifooter-font">&nbsp;&nbsp;</span>
-                <a href="contact.html#QuickContact" class="semifooter-font">ENQUIRY</a>
+                <a href="contact.php" class="semifooter-font">ENQUIRY</a>
 				<span class="semifooter-font">&nbsp;&nbsp;</span>
                 <a href="careers.html" class="semifooter-font">CAREERS</a>
          </div>
@@ -519,7 +518,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		}
 	}
 
-	$to = "panry@gmail.com, prasan.g1981@gmail.com";
+	$to = "contact@rvsoftwares.com";
 	$subject = "Contact Us";
 	
 	
