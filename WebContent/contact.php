@@ -5,11 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
+    <meta name="description" content="Know how we can be contacted for Sales and Support over phone or mail. Alternatively can fill online form to let us know what we can do for you.">
     <meta name="author" content="">
     <link rel="icon" href="./images/favicon.ico">
 
-    <title>RV Softwares-Realize your Vision</title>
+    <title>RV Softwares-Contact Us</title>
 
     <!-- Bootstrap core CSS -->
     <link href="./css/bootstrap.css" rel="stylesheet">
@@ -414,7 +414,7 @@ function validateform(){
              <h5 class="semifooter-heading-font">Quick Links</h5>
                 <a href="feedback.html" class="semifooter-font">FEEDBACK</a>
 				<span class="semifooter-font">&nbsp;&nbsp;</span>
-                <a href="contact.html#QuickContact" class="semifooter-font">ENQUIRY</a>
+                <a href="contact.php" class="semifooter-font">ENQUIRY</a>
 				<span class="semifooter-font">&nbsp;&nbsp;</span>
                 <a href="careers.html" class="semifooter-font">CAREERS</a>
          </div>
